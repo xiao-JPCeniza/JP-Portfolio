@@ -42,11 +42,13 @@
             placeholder="Your message..."
           />
         </div>
+        <p v-if="error" class="text-red-600 dark:text-red-400 text-sm">{{ error }}</p>
         <button
           type="submit"
-          class="w-full md:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-medium shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+          :disabled="sending"
+          class="w-full md:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-medium shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          Send Message
+          {{ sending ? 'Sending...' : 'Send Message' }}
         </button>
       </form>
       <div class="mt-12 flex items-center justify-center gap-6">
@@ -68,20 +70,34 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import axios from 'axios';
 
 const form = reactive({
   name: '',
   email: '',
   message: '',
 });
+const sending = ref(false);
+const error = ref('');
 
-function onSubmit() {
-  // In a real app, POST to Laravel route (e.g. /api/contact)
-  console.log('Submit:', form);
-  alert('Message sent! (Demo – wire this to your Laravel backend.)');
-  form.name = '';
-  form.email = '';
-  form.message = '';
+async function onSubmit() {
+  error.value = '';
+  sending.value = true;
+  try {
+    await axios.post('/contact', {
+      name: form.name,
+      email: form.email,
+      message: form.message,
+    });
+    form.name = '';
+    form.email = '';
+    form.message = '';
+    alert('Message sent! I\'ll get back to you soon.');
+  } catch (e) {
+    error.value = e.response?.data?.message || 'Something went wrong. Please try again.';
+  } finally {
+    sending.value = false;
+  }
 }
 </script>

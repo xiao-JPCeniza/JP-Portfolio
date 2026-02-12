@@ -115,4 +115,12 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Contact form notification email
+    |--------------------------------------------------------------------------
+    | Address that receives a copy of each portfolio contact message.
+    */
+    'contact_notify' => env('CONTACT_NOTIFY_EMAIL', 'cenizajp12@gmail.com'),
+
 ];

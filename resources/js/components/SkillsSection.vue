@@ -74,8 +74,7 @@ const skills = [
 ];
 
 const tools = [
-  'Git', 'Docker', 'VS Code', 'Postman', 'Jira', 'Ansible',
-  'Nginx', 'Apache', 'MySQL', 'MongoDB', 'Redis', 'Linux',
-  'Windows Server', 'Vue.js', 'Laravel', 'Tailwind CSS',
+  'Laravel', 'Livewire', 'Vue.js', 'PHP', 'Tailwind CSS',
+  'Python', 'MySQL', 'Git', 'VS Code', 'Linux', 'Windows Server',
 ];
 </script>
