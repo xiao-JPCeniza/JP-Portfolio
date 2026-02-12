@@ -16,7 +16,8 @@
         </p>
         <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
           <a
-            href="#"
+            href="/CenizaJP-Resume.pdf"
+            download="CenizaJP-Resume.pdf"
             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 text-white font-medium shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

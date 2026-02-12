@@ -1,6 +1,8 @@
 <template>
   <div class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300" :class="{ 'dark': isDark }">
     <ThemeToggle :is-dark="isDark" @toggle="isDark = !isDark" />
+    <GamesIcon @open="gamesOpen = true" />
+    <GamesPanel :open="gamesOpen" @close="gamesOpen = false" />
     <NavBar />
     <main>
       <HeroSection />
@@ -17,6 +19,8 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import ThemeToggle from './components/ThemeToggle.vue';
+import GamesIcon from './components/GamesIcon.vue';
+import GamesPanel from './components/GamesPanel.vue';
 import NavBar from './components/NavBar.vue';
 import HeroSection from './components/HeroSection.vue';
 import AboutSection from './components/AboutSection.vue';
@@ -27,6 +31,7 @@ import ContactSection from './components/ContactSection.vue';
 import AppFooter from './components/AppFooter.vue';
 
 const isDark = ref(false);
+const gamesOpen = ref(false);
 
 onMounted(() => {
   const saved = localStorage.getItem('theme');
